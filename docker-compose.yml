@@ -5,6 +5,7 @@ services:
     image: mysql:5.7
     # restart: unless-stopped
     env_file: ./.env
+    #Asignacion de las variables de entorno
     environment:
       - MYSQL_USER=$MYSQLDB_USER
       - MYSQL_PASSWORD=$MYSQLDB_PASSWORD
@@ -16,6 +17,7 @@ services:
       driver: none
 
   app:
+  #instalacion de dependencias
     depends_on:
       - mysqldb
     links:
@@ -24,6 +26,7 @@ services:
     # restart: unless-stopped
     env_file: ./.env
     ports:
+    #Asignar el puerto desde el punto .env
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
       - DB_HOST=$MYSQLDB_HOST
